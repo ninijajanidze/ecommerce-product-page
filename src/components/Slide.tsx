@@ -123,6 +123,25 @@ const Slide = () => {
         />
       )}
 
+      <div className="md:hidden">
+        <Slider
+          {...settings}
+          ref={(slider) => {
+            sliderRef.current = slider;
+          }}
+        >
+          {photos.map((photo, index) => (
+            <div key={index}>
+              <img
+                src={photo.src}
+                alt={photo.alt}
+                className="w-[375px] h-[300px]"
+              />
+            </div>
+          ))}
+        </Slider>
+      </div>
+
       <div
         className={`${
           isModal
@@ -130,7 +149,12 @@ const Slide = () => {
             : "hidden"
         }`}
       >
-        <Slider {...settings} ref={sliderRef}>
+        <Slider
+          {...settings}
+          ref={(slider) => {
+            sliderRef.current = slider;
+          }}
+        >
           {photos.map((photo, index) => (
             <div key={index}>
               <img
@@ -138,20 +162,6 @@ const Slide = () => {
                 alt={photo.alt}
                 className="md:w-[350px] md:h-[350px] md:rounded-[15px]
                   lg:w-[550px] lg:h-[550px] lg:rounded-[15px]"
-              />
-            </div>
-          ))}
-        </Slider>
-      </div>
-
-      <div className="md:hidden">
-        <Slider {...settings} ref={sliderRef}>
-          {photos.map((photo, index) => (
-            <div key={index}>
-              <img
-                src={photo.src}
-                alt={photo.alt}
-                className="w-[375px] h-[300px]"
               />
             </div>
           ))}
